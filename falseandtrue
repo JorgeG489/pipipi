@@ -1,7 +1,1 @@
-local valor = true
-
-local function obtenerValor()
-    return valor
-end
-
-return obtenerValor
+return true
