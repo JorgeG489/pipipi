@@ -1,3 +1,4 @@
+print("test")
 local success, result = pcall(function()
     return loadstring(game:HttpGet('https://raw.githubusercontent.com/Kokiuvu123/GPO/refs/heads/main/sadsadsad'))()
 end)
@@ -8,13 +9,7 @@ if not success or result ~= true then
 end
 
 
-if not getgenv().vipserver then
-    print("S")
-end
 
-if getgenv().vipserver then
-    print("d")
-end
 
 
 local MacLib = loadstring(game:HttpGet("https://github.com/biggaboy212/Maclib/releases/latest/download/maclib.txt"))()
@@ -4322,6 +4317,23 @@ sections.welcomeSectionFarmAnniversary:Toggle({
         farm = value
         print(farm)
         if farm then
+
+            if game.PlaceId == 1730877806 then
+                if not getgenv().vipserver and getgenv().vipserver == "" then
+                    print("no private server")
+                    
+                end
+                
+                if getgenv().vipserver then
+                    local priv = getgenv().vipserver
+                    print(priv)
+                end
+            end
+
+
+
+
+
             local function gpo()
                 local args = {
                     [1] = "Sky Walk2",
