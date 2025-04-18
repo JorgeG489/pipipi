@@ -96,7 +96,7 @@ local wave1LastGiftCount = 0
 local wave1StableGiftCount = false
 local colorTargets = {"Really blue", "Lime green", "Really red", "New Yeller"}
 
-local debug = true
+local debug = false
 local farm = false
 local wave = 1
 local waveParagraph
