@@ -1,4 +1,4 @@
-print("test")
+print("sssasdasdasd")
 local success, result = pcall(function()
     return loadstring(game:HttpGet('https://raw.githubusercontent.com/Kokiuvu123/GPO/refs/heads/main/sadsadsad'))()
 end)
@@ -8,7 +8,68 @@ if not success or result ~= true then
     return
 end
 
+local player = game:GetService("Players").LocalPlayer
 
+-- Separar la lógica en dos partes distintas
+if game.PlaceId == 1730877806 then
+    -- Primera parte: Esperar a que aparezca chooseType
+    if getgenv().vipserver and getgenv().vipserver ~= "" then
+        local priv = getgenv().vipserver
+        print("vip server:" .. priv)
+        
+        task.spawn(function()
+            -- Esperar a que el juego cargue completamente
+            wait(3)
+            
+            -- Invocar el servidor privado hasta que aparezca chooseType
+            while true do
+                local chooseType = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("chooseType")
+                
+                if not chooseType then
+                    print("sss?")
+                    pcall(function()
+                        game:GetService("ReplicatedStorage").Events.reserved:InvokeServer(priv)
+                    end)
+                    wait(2)
+                else
+                    print("yeahhhh!!")
+                    break -- Salir del bucle cuando se encuentre chooseType
+                end
+            end
+        end)
+    end
+end
+
+-- Segunda parte: Activar el RemoteEvent una vez que chooseType exista
+if game.PlaceId == 1730877806 then
+    if getgenv().vipserver and getgenv().vipserver ~= "" then
+        task.spawn(function()
+            -- Esperar un poco para asegurar que la primera parte haya tenido tiempo de ejecutarse
+            wait(5)
+            
+            -- Bucle para activar el RemoteEvent
+            while true do
+                local chooseType = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("chooseType")
+                
+                if chooseType then
+                    print("11")
+                    pcall(function()
+                        local remoteEvent = chooseType.Frame:WaitForChild("RemoteEvent", 3)
+                        if remoteEvent then
+                            remoteEvent:FireServer(true)
+                            print("2")
+                            wait(5) -- Esperar más tiempo después de activar
+                        else
+                            print("4")
+                        end
+                    end)
+                end
+                
+                wait(3) -- Verificar periódicamente
+            end
+        end)
+    end
+end
 
 
 
@@ -4310,6 +4371,10 @@ task.spawn(function()
     end
 end)
 
+
+
+
+
 sections.welcomeSectionFarmAnniversary:Toggle({
     Name = "Anniversary",
     Default = false,
@@ -4318,17 +4383,7 @@ sections.welcomeSectionFarmAnniversary:Toggle({
         print(farm)
         if farm then
 
-            if game.PlaceId == 1730877806 then
-                if not getgenv().vipserver and getgenv().vipserver == "" then
-                    print("no private server")
-                    
-                end
-                
-                if getgenv().vipserver then
-                    local priv = getgenv().vipserver
-                    print(priv)
-                end
-            end
+            
 
 
 
